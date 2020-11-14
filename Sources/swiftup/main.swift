@@ -5,3 +5,4 @@ cli.commands = [
     ExampleCommand()
 ]
 cli.go()
+print("Hello, world")

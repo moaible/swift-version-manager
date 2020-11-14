@@ -12,7 +12,7 @@ final class swiftupTests: XCTestCase {
             return
         }
 
-        let fooBinary = productsDirectory.appendingPathComponent("swift-cli-boilerplate")
+        let fooBinary = productsDirectory.appendingPathComponent("swiftup")
 
         let process = Process()
         process.executableURL = fooBinary
