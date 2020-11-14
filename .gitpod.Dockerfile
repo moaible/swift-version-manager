@@ -1,6 +1,6 @@
 FROM swift AS build
 
-USER gitpod
+USER ROOT
 FROM gitpod/workspace-full
 COPY --from=build /usr/bin/swiftc /usr/bin/
 
@@ -26,7 +26,7 @@ RUN sudo apt-get update -q && \
 # Install Swift
 RUN mkdir -p /home/gitpod/.swift && \
     cd /home/gitpod/.swift && \
-    curl -fsSL https://swift.org/builds/swift-5.2-release/ubuntu1804/swift-5.2-RELEASE/swift-5.2-RELEASE-ubuntu18.04.tar.gz | tar -xzv
+    curl -fsSL https://swift.org/builds/swift-5.3-release/ubuntu1804/swift-5.3-RELEASE/swift-5.3-RELEASE-ubuntu18.04.tar.gz | tar -xzv
 ENV PATH="$PATH:/home/gitpod/.swift/swift-5.2-RELEASE-ubuntu18.04/usr/bin"
 
 # Install Ice
@@ -42,3 +42,12 @@ RUN mkdir -p $HOME/sourcekite && git clone https://github.com/vknabel/sourcekite
 WORKDIR $HOME/sourcekite 
 RUN swift build -c release
 RUN sudo cp -f $HOME/sourcekite/.build/release/sourcekite /usr/local/bin
+
+# Install sourcekit-lsp
+WORKDIR $HOME
+RUN git clone git@github.com:apple/sourcekit-lsp.git $HOME/sourcekit-lsp
+WORKDIR $HOME/sourcekit-lsp
+RUN swift build -c release
+RUN mv .build/release/sourcekit-lsp /usr/local/bin
+
+USER gitpod
