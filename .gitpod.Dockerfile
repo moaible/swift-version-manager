@@ -43,11 +43,4 @@ WORKDIR $HOME/sourcekite
 RUN swift build -c release
 RUN sudo cp -f $HOME/sourcekite/.build/release/sourcekite /usr/local/bin
 
-# Install sourcekit-lsp
-WORKDIR $HOME
-RUN git clone git@github.com:apple/sourcekit-lsp.git $HOME/sourcekit-lsp
-WORKDIR $HOME/sourcekit-lsp
-RUN swift build -c release
-RUN mv .build/release/sourcekit-lsp /usr/local/bin
-
 USER gitpod
