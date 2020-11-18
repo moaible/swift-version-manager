@@ -45,9 +45,15 @@ RUN sudo cp -f $HOME/sourcekite/.build/release/sourcekite /usr/local/bin
 
 # Install sourcekit-lsp
 RUN git clone https://github.com/apple/sourcekit-lsp $HOME/sourcekit-lsp
+RUN apt-get install libsqlite3-dev -y
+RUN apt-get install libdispatch-dev -y
+RUN apt-get install libncurses5-dev -y
+RUN apt-get install libncurses5 -y
 WORKDIR $HOME/sourcekit-lsp
 RUN swift build \
     -Xcxx -I/home/gitpod/.swift/swift-5.3-RELEASE-ubuntu18.04/usr/lib/swift \
     -Xcxx -I/home/gitpod/.swift/swift-5.3-RELEASE-ubuntu18.04/usr/lib/swift/Block/
+WORKDIR $HOME/sourcekit-lsp/Editors/vscode
+RUN npm run createDevPackage
 
 USER gitpod

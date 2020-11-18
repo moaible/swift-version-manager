@@ -10,7 +10,7 @@
         "uncoveredGutterStyle": "slashyellow"
     },
     "sourcekit-lsp.toolchainPath": "sourcekite",
-    "sde.languageServerMode": "sourcekit-lsp",
+    "sde.languageServerMode": "sourcekite",
     "swift.languageServerPath": "/home/gitpod/sourcekit-lsp/.build/debug/sourcekit-lsp",
     "swift.path.swift_driver_bin": "/home/gitpod/.swift/swift-5.3-RELEASE-ubuntu18.04/usr/bin/swift",
     "swift.targets": []
