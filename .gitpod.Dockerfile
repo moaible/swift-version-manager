@@ -23,6 +23,13 @@ RUN sudo apt-get update -q && \
         pkg-config \
     && sudo rm -rf /var/lib/apt/lists/*
 
+# Install sourcekit-lsp dependencies
+RUN sudo apt-get install -yq \
+    libsqlite3-dev \
+    libdispatch-dev \
+    libncurses5-dev \
+    libncurses5
+
 # Install Swift
 RUN mkdir -p /home/gitpod/.swift && \
     cd /home/gitpod/.swift && \
@@ -45,10 +52,6 @@ RUN sudo cp -f $HOME/sourcekite/.build/release/sourcekite /usr/local/bin
 
 # Install sourcekit-lsp
 RUN git clone https://github.com/apple/sourcekit-lsp $HOME/sourcekit-lsp
-RUN apt-get install libsqlite3-dev -y
-RUN apt-get install libdispatch-dev -y
-RUN apt-get install libncurses5-dev -y
-RUN apt-get install libncurses5 -y
 WORKDIR $HOME/sourcekit-lsp
 RUN swift build \
     -Xcxx -I/home/gitpod/.swift/swift-5.3-RELEASE-ubuntu18.04/usr/lib/swift \
