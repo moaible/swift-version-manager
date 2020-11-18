@@ -26,7 +26,6 @@ RUN sudo apt-get update -q && \
 # Install sourcekit-lsp dependencies
 RUN sudo apt-get install -yq \
     libsqlite3-dev \
-    libdispatch-dev \
     libncurses5-dev \
     libncurses5
 
