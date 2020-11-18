@@ -46,6 +46,6 @@ RUN sudo cp -f $HOME/sourcekite/.build/release/sourcekite /usr/local/bin
 # Install sourcekit-lsp
 RUN git clone https://github.com/apple/sourcekit-lsp $HOME/sourcekit-lsp
 WORKDIR $HOME/sourcekit-lsp
-RUN swift build -Xcxx
+RUN swift build -Xcxx -I/home/gitpod/.swift/swift-5.3-RELEASE-ubuntu18.04/usr/lib/swift
 
 USER gitpod
